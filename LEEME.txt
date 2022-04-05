@@ -1,0 +1,76 @@
+para intalar un proyecyo de laravel con version 7.24
+	composer create-project --prefer-dist laravel/laravel:^7.30 nombreproyecto
+
+para importar una BD grande a phpmyadmin, mediante la consola de windox
+	mysql -h localhost -u USER -pPASS --default-character-set=utf8 nameBD<direccion donde se encuentra 
+
+Para compilar nuestro css y nuestro js en uno solo
+	npm run dev
+
+Para compilar el kernel, para cuando se pone helpers
+	composer dump-autoload
+
+
+
+TABLA PRODUCTOS
+name
+imagenes
+precio_costo
+precio_venta_antes
+precio_venta
+precio_envio
+peso_bulto
+color
+stock
+descriptio
+marca
+modelo
+caracteristicas
+pago_cuba
+sku
+
+TABLA ORDENES
+id
+id_orden
+id_producto
+
+
+
+
+
+
+
+
+8502Rmonier.
+
+ya esta intalado:
+	paquete QR
+	paquete datatables-ajax
+	paquete DomPDF
+
+=======
+Pquetes intalados por fdefault
+	guzzlehttp/guzzle   es para consumir de api
+
+=======
+for install proyect the laravel am vers
+
+niveles de acceso
+103 -- Super amdin
+102 -- Administradores
+101 -- vendedores o moderador
+100 -- Usuer normales
+
+GIT
+- git status = te dice todos los archivo que se cambiaron
+- git add * = sube todos los archivos modificados al local de git
+- git commit -m "mensage descriccion" = es para tener el historial de lo que hiciste y saber
+- git push origin master = se suben los archivos modificados a git
+
+
+I have red ....
+you have red 
+he have red
+she has red 
+we have red 
+they have red 
