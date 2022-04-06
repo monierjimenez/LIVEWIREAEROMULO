@@ -28,7 +28,6 @@ class UsersController extends Controller
 
         //return back()->with('flasherror', 'Permissions denied.');
         $users = User::all();
-//        notify()->success('Welcome to Laravel Notify ⚡️');
     	return view('admin.users.index', compact('users'));
     }
 
