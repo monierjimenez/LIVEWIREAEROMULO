@@ -29,13 +29,29 @@
                     <a href="{{ route('admin.roles.index') }}"><i class="fa fa-unlock-alt"></i> List Roles</a>
                 </li>
             @endif
-{{--            <div class="container">--}}
-{{--                <!----> <button type="button" class="btn btn-default btn-sm">Cadastrar Monitorias</button>--}}
-{{--            </div>--}}
-            <!--Teste modal-->
         </ul>
     </li>
   @endif
+
+    @if( checkrights('PUV', auth()->user()->permissions) )
+        <li class="treeview {{ request()->is('admin/users*') ? 'active' : '' }} {{ request()->is('admin/roles*') ? 'active' : '' }}">
+            <a href="{{ route('admin.users.index') }}"><i class="fa fa-newspaper-o"></i> <span>POST</span>
+                <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+          </span>
+            </a>
+            <ul class="treeview-menu">
+                <li class="{{ request()->is('admin/users') ? 'active' : '' }}">
+                    <a href="{{ route('admin.users.index') }}"><i class="fa fa-users"></i> List Users</a>
+                </li>
+                @if( checkrights('PRV', auth()->user()->permissions) )
+                    <li class="{{ request()->is('admin/roles') ? 'active' : '' }}">
+                        <a href="{{ route('admin.roles.index') }}"><i class="fa fa-unlock-alt"></i> List Roles</a>
+                    </li>
+                @endif
+            </ul>
+        </li>
+    @endif
 
     <li class="treeview {{ request()->is('admin/states*') ? 'active' : '' }} {{ request()->is('admin/citys*') ? 'active' : '' }}">
         <a href="#"><i class="fa fa-users"></i> <span>OTHERS</span>
@@ -53,11 +69,6 @@
                 <li class="{{ request()->is('admin/citys') ? 'active' : '' }}">
                     <a href="{{ route('admin.citys.index') }}"> <i class="fa fa-map"></i> List Citys</a>
                 </li>
-
-{{--                <div class="container">--}}
-{{--                    <!----> <button type="button" class="btn btn-default btn-sm">Cadastrar Monitorias</button>--}}
-{{--                </div>--}}
-                <!--Teste modal-->
             </ul>
         @endif
     </li>
@@ -72,16 +83,8 @@
           </a>
           <ul class="treeview-menu">
               <li class="{{ request()->is('admin/records-users') ? 'active' : '' }}">
-                  <a href="{{ route('admin.records') }}">Record users</a>
+                  <a href="{{ route('admin.records') }}"><i class="fa fa-tags"></i> Record users</a>
               </li>
-
-              <div class="container">
-                  <!-- <button type="button" class="btn btn-default btn-sm">Cadastrar Monitorias</button> -->
-              </div>
-              <!--Teste modal-->
-
-              <!--Teste modal
-              <li><a href="#">Meus Ratings</a></li>-->
           </ul>
       </li>
   @endif
