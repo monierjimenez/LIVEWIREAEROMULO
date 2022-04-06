@@ -1,11 +1,17 @@
 @extends('admin.layout')
 
 @section('header')
+    @if( !checkrights('PSE', auth()->user()->permissions) )
+        <script type="text/javascript">
+            window.location="/admin/";
+        </script>
+    @endif
+
 	<section class="content-header">
-    <h1>MUNICIPIOS<small>Crear Municipios</small></h1>
+    <h1>CITY<small>Create City</small></h1>
     <ol class="breadcrumb">
       <li><a href="{{ route('admin') }}"><i class="fa fa-tachometer-alt"></i> Home</a></li>
-      <li><a href="{{ route('admin.municipios.index') }}"><i class="fa fa-list"></i>List Municipios</a></li>
+      <li><a href="{{ route('admin.citys.index') }}"><i class="fa fa-list"></i>List City</a></li>
       <li class="active">Create</li>
     </ol>
   </section>
@@ -13,37 +19,37 @@
 
 @section('content')
 	<div class="row">
-		<form method="POST" action="{{ route('admin.municipios.update', $municipio) }}" enctype="multipart/form-data">
+		<form method="POST" action="{{ route('admin.citys.update', $city) }}" enctype="multipart/form-data">
 			@csrf  {{ method_field('PUT') }}
 		<div class="col-md-8">
 			<div class="box box-primary">
 		    	<div class="box-body">
 		    		<div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
 		    			<label>Name</label>
-		    			<input name='name' placeholder="Nombre de la municipio" class="form-control" value="{{ old('name', $municipio->name) }}">
+		    			<input name='name' placeholder="Name the city" class="form-control" value="{{ old('name', $city->name) }}">
 		    			{!! $errors->first('name', '<span class="help-block">:message</span>') !!}
 		    		</div>
 
-                    <div class="form-group {{ $errors->has('estado_id') ? 'has-error' : '' }}">
-                        <label>State</label>
-                        <select name="estado_id" class="form-control" >
-                            <option value="" >Selecciones Provincia</option>
-                            @foreach( $estados as $estado )
-                                <option value="{{ $estado->id }}" {{ old('estado_id', $municipio->estado_id) == $estado->id ? 'selected' : ''}}>
-                                    {{ $estado->name }}
+                    <div class="form-group {{ $errors->has('state_id') ? 'has-error' : '' }}">
+                        <label>States</label>
+                        <select name="state_id" class="form-control" >
+                            <option value="" >Selecciones States</option>
+                            @foreach( $states as $state )
+                                <option value="{{ $state->id }}" {{ old('state_id', $city->state_id) == $state->id ? 'selected' : ''}}>
+                                    {{ $state->name }}
                                 </option>
                             @endforeach
 {{--                            <option value="0" {{ old('status', $municipio->estado_id) == 0 ? 'selected' : ''}}>Draf</option>--}}
 {{--                            <option value="1" {{ old('status', $municipio->estado_id) == 1 ? 'selected' : ''}}>Public</option>--}}
                         </select>
-                        {!! $errors->first('estado_id', '<span class="help-block">:message</span>') !!}
+                        {!! $errors->first('state_id', '<span class="help-block">:message</span>') !!}
                     </div>
 
                     <div class="form-group {{ $errors->has('status') ? 'has-error' : '' }}">
                         <label>Status</label>
                         <select name="status" class="form-control" >
-                            <option value="0" {{ old('status', $municipio->status) == 0 ? 'selected' : ''}}>Draf</option>
-                            <option value="1" {{ old('status', $municipio->status) == 1 ? 'selected' : ''}}>Public</option>
+                            <option value="0" {{ old('status', $city->status) == 0 ? 'selected' : ''}}>Draf</option>
+                            <option value="1" {{ old('status', $city->status) == 1 ? 'selected' : ''}}>Public</option>
                         </select>
                         {!! $errors->first('status', '<span class="help-block">:message</span>') !!}
                     </div>
@@ -57,7 +63,7 @@
 				<br>
 				<div class="box-body">
 			    	<div class="form-group">
-			    		<button type="submit" class='btn btn-primary btn-block'>Save Municipio</button>
+			    		<button type="submit" class='btn btn-primary btn-block'>Save City</button>
 			    	</div>
 		    	</div>
     		</div>

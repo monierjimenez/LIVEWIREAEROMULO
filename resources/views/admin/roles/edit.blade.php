@@ -118,19 +118,25 @@
                     <div class="col-md-3">
                         <div class="box box-solid">
                             <div class="box-header with-border">
-                                Permissions ???
+                                Permissions State
                             </div>
 
                             <div class="box-body">
                                 <p>
-                                    <input type="checkbox" name="encargado" class="minimal flat-red" value="1" >
-                                    View User<br>
+                                    {!! checkrights('PSV', $role->permissions) ?
+										'<input type="checkbox" name="permissions[]" class="minimal flat-red" value="PSV" checked> '
+											 :
+										'<input type="checkbox" name="permissions[]" class="minimal flat-red" value="PSV" > ' !!}View State<br>
 
-                                    <input type="checkbox" name="encargado" class="minimal flat-red" value="1" >
-                                    Edit User<br>
+                                    {!! checkrights('PSE', $role->permissions) ?
+                                    '<input type="checkbox" name="permissions[]" class="minimal flat-red" value="PSE" checked> '
+                                         :
+                                    '<input type="checkbox" name="permissions[]" class="minimal flat-red" value="PSE" > ' !!}Edit State<br>
 
-                                    <input type="checkbox" name="encargado" class="minimal flat-red" value="1" >
-                                    Delete User
+                                    {!! checkrights('PSD', $role->permissions) ?
+                                    '<input type="checkbox" name="permissions[]" class="minimal flat-red" value="PSD" checked> '
+                                         :
+                                    '<input type="checkbox" name="permissions[]" class="minimal flat-red" value="PSD" > ' !!}Delete State
                                 </p>
                             </div>
                         </div>

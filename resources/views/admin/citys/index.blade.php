@@ -1,11 +1,17 @@
 @extends('admin.layout')
 
 @section('header')
+    @if( !checkrights('PSV', auth()->user()->permissions) )
+        <script type="text/javascript">
+            window.location="/admin/";
+        </script>
+    @endif
+
 	<section class="content-header">
-    <h1>MUNICIPALITIES<small>List of municipalitie</small></h1>
+    <h1>CITYS<small>List of citys</small></h1>
     <ol class="breadcrumb">
       <li><a href="{{ route('admin') }}"><i class="fa fa-tachometer"></i> Home</a></li>
-      <li class="active">Municipalities</li>
+      <li class="active">Citys</li>
     </ol>
   </section>
 @stop
@@ -13,14 +19,15 @@
 @section('content')
   <div class="box box-primary">
     <div class="box-header">
-      <h3 class="box-title">List of municipalities</h3>
+      <h3 class="box-title">List of citys</h3>
 {{--      <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModalState">--}}
 {{--          <i class="fa fa-plus"></i> Create State--}}
 {{--      </button>--}}
-
-        <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModalMunicipio" data-backdrop="static" data-keyboard="false">
-            <i class="fa fa-plus"></i> Create municipalitie
-        </button>
+        @if( checkrights('PSE', auth()->user()->permissions) )
+            <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModalMunicipio" data-backdrop="static" data-keyboard="false">
+                <i class="fa fa-plus"></i> Create citys
+            </button>
+        @endif
     </div>
 
     <!-- /.box-header -->
@@ -31,7 +38,7 @@
             <th>ID</th>
             <th>Name</th>
             <th>Status</th>
-            <th>State</th>
+            <th>States</th>
             <th>Date</th>
             <th>Option</th>
           </tr>
@@ -39,31 +46,35 @@
 
         <tbody>
           @php $i = 1; @endphp
-          @foreach ($municipios as $municipio)
+          @foreach ($citys as $city)
             <tr>
               <td>{{ $i }}</td>
-              <td>{!! $municipio->name !!}</td>
+              <td>{!! $city->name !!}</td>
               <td>
-                  @if ( $municipio->status == 1 ) <i class="fa fa-check"></i>
+                  @if ( $city->status == 1 ) <i class="fa fa-check"></i>
                   @else <i class="fa fa-close"></i> @endif
               </td>
               <td>
-                  @foreach($municipio->estado as $estado )
-                    {{ $estado->name }}
+                  @foreach($city->state as $state )
+                    {{ $state->name }}
                       @break
                   @endforeach
               </td>
 
-              <td>{{ $municipio->created_at }}</td>
+              <td>{{ $city->created_at }}</td>
               <td>
-{{--                  {{$municipalitie}}--}}
-                <a href="{{ route('admin.municipios.edit', $municipio) }}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i></a>
-                <form method="POST" action="{{ route('admin.municipios.destroy', $municipio) }}" style="display: inline">
-                  @csrf {{ method_field('DELETE') }}
-                  <button class="btn btn-xs btn-danger" onclick="return confirm('Estas seguro de eliminar este estado.')">
-                  <i class="fa fa-trash"></i>
-                 </button>
-               </form>
+                @if( checkrights('PSE', auth()->user()->permissions) )
+                    <a href="{{ route('admin.citys.edit', $city) }}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i></a>
+                @endif
+
+                @if( checkrights('PSD', auth()->user()->permissions) )
+                    <form method="POST" action="{{ route('admin.citys.destroy', $city) }}" style="display: inline">
+                      @csrf {{ method_field('DELETE') }}
+                      <button class="btn btn-xs btn-danger" onclick="return confirm('Are you sure to delete this city?')">
+                      <i class="fa fa-trash"></i>
+                     </button>
+                    </form>
+               @endif
               </td>
             </tr>
             @php $i = $i+1; @endphp
@@ -76,12 +87,12 @@
 @stop
 
 @push('modal')
-  @include('admin.municipios.create')
+  @include('admin.citys.create')
 @endpush
 
 @push('script')
   <script>
-    if ( window.location.hash === '#create-municipio' )
+    if ( window.location.hash === '#create-city' )
     { //alert(1);
       $('#myModalMunicipio').modal('show');
     }
@@ -92,7 +103,7 @@
 
     $('#myModalMunicipio').on('shown.bs.modal', function(){
       $('#name').focus();
-      window.location.hash = '#create-municipio';
+      window.location.hash = '#create-city';
     });
   </script>
 @endpush

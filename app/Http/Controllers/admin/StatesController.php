@@ -12,6 +12,9 @@ class StatesController extends Controller
 {
     public function index()
     {
+        if ( !in_array('PSV', explode(".", auth()->user()->permissions)) )
+            return redirect()->route('admin')->with('flasherror', 'Permissions denied to perform this operation, contact the administrator.');
+
         $states = States::latest()->get();
         return view('admin.states.index', compact('states'));
     }
@@ -30,6 +33,9 @@ class StatesController extends Controller
 
     public function edit(States $state)
     {
+        if ( !in_array('PSE', explode(".", auth()->user()->permissions)) )
+            return redirect()->route('admin')->with('flasherror', 'Permissions denied to perform this operation, contact the administrator.');
+
         return view('admin.states.edit', compact('state'));
     }
 
@@ -38,7 +44,6 @@ class StatesController extends Controller
         $this->validate($request, [
             'name' => 'required|unique:states,name,'.$state->id,
         ]);
-       // dd(4);
 
         $state->update([
             'name' => $request->input('name'),
@@ -46,7 +51,7 @@ class StatesController extends Controller
             'status' => $request->input('status'),
         ]);
         $state->save();
-       // notify()->success('Welcome to Laravel Notify ⚡️');
+
         generaRecords('States updated', 'States <b>' .$request->input('name'). '</b> updated successfully, for '. auth()->user()->name .'.');
         return redirect()->route('admin.states.edit', $state)->with('flash', 'State has been saved correctly.');
     }

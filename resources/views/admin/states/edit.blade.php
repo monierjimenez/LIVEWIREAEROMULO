@@ -1,6 +1,11 @@
 @extends('admin.layout')
 
 @section('header')
+    @if( !checkrights('PSE', auth()->user()->permissions) )
+        <script type="text/javascript">
+            window.location="/admin/";
+        </script>
+    @endif
 	<section class="content-header">
     <h1>STATES<small>Crear States</small></h1>
     <ol class="breadcrumb">

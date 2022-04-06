@@ -123,14 +123,19 @@
 								<div class="col-md-3">
 									<div class="box box-solid">
 									  <div class="box-header with-border">
-                                          Permissions ???
+                                          Permissions States
 									  </div>
 									  <!-- /.box-header -->
 									  <div class="box-body">
 										  <p>
-												<i class="fa fa-check margin-r-5"></i>View User<br>
-												<i class="fa fa-times margin-r-5"></i>Edit User<br>
-											  	<i class="fa fa-times margin-r-5"></i>Delete User <br>
+                                              {!! checkrights('PSV', $role->permissions) ? '<i class="fa fa-check margin-r-5"></i>'
+                                               : '<i class="fa fa-times margin-r-5"></i>' !!} View State<br>
+
+                                              {!! checkrights('PSE', $role->permissions) ? '<i class="fa fa-check margin-r-5"></i>'
+                                               : '<i class="fa fa-times margin-r-5"></i>' !!} Edit State<br>
+
+                                              {!! checkrights('PSD', $role->permissions) ? '<i class="fa fa-check margin-r-5"></i>'
+                                               : '<i class="fa fa-times margin-r-5">' !!}</i> Delete State<br>
 										  </p>
 									  </div>
 									</div>

@@ -1,6 +1,11 @@
 @extends('admin.layout')
 
 @section('header')
+    @if( !checkrights('PSV', auth()->user()->permissions) )
+        <script type="text/javascript">
+            window.location="/admin/";
+        </script>
+    @endif
 	<section class="content-header">
     <h1>STATES<small>List of states</small></h1>
     <ol class="breadcrumb">
@@ -17,10 +22,11 @@
 {{--      <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModalState">--}}
 {{--          <i class="fa fa-plus"></i> Create State--}}
 {{--      </button>--}}
-
-        <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModalState" data-backdrop="static" data-keyboard="false">
-            <i class="fa fa-plus"></i> Create State
-        </button>
+        @if( checkrights('PSE', auth()->user()->permissions) )
+            <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModalState" data-backdrop="static" data-keyboard="false">
+                <i class="fa fa-plus"></i> Create State
+            </button>
+        @endif
     </div>
 
     <!-- /.box-header -->
@@ -48,19 +54,23 @@
                   @else <i class="fa fa-close"></i> @endif
               </td>
               <td>
-{{--                {{ count($state->municipio)  }}--}}
+                {{ count($state->city)  }}
               </td>
 
               <td>{{ $state->created_at }}</td>
               <td>
-{{--                  {{$state}}--}}
-                <a href="{{ route('admin.states.edit', $state) }}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i></a>
-                <form method="POST" action="{{ route('admin.states.destroy', $state) }}" style="display: inline">
-                  @csrf {{ method_field('DELETE') }}
-                  <button class="btn btn-xs btn-danger" onclick="return confirm('Estas seguro de eliminar este estado.')">
-                  <i class="fa fa-trash"></i>
-                 </button>
-               </form>
+                @if( checkrights('PSE', auth()->user()->permissions) )
+                    <a href="{{ route('admin.states.edit', $state) }}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i></a>
+                @endif
+
+                @if( checkrights('PSD', auth()->user()->permissions) )
+                    <form method="POST" action="{{ route('admin.states.destroy', $state) }}" style="display: inline">
+                      @csrf {{ method_field('DELETE') }}
+                      <button class="btn btn-xs btn-danger" onclick="return confirm('Estas seguro de eliminar este estado.')">
+                      <i class="fa fa-trash"></i>
+                     </button>
+                   </form>
+                @endif
               </td>
             </tr>
             @php $i = $i+1; @endphp

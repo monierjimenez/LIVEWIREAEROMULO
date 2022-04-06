@@ -14,10 +14,10 @@ class States extends Model
         return 'url';
     }
 
-//    public function municipio()
-//    {
-//        return $this->hasMany(Municipios::class, 'estado_id', 'id');
-//    }
+    public function city()
+    {
+        return $this->hasMany(Citys::class, 'state_id', 'id');
+    }
 
     public function setNameAttribute($name)
     {

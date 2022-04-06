@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
     //states
     Route::resource('states', 'StatesController', ['as' => 'admin']);
     //city
-    Route::resource('citys', 'MunicipiosController', ['as' => 'admin']);
+    Route::resource('citys', 'CityController', ['as' => 'admin']);
     //ROLE
     Route::resource('roles', 'RolesController', ['as' => 'admin']);
 

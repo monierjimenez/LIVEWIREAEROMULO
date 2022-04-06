@@ -37,32 +37,31 @@
     </li>
   @endif
 
-    @if( checkrights('PUV', auth()->user()->permissions) )
-        <li class="treeview {{ request()->is('admin/states*') ? 'active' : '' }}">
-            <a href="{{ route('admin.states.index') }}"><i class="fa fa-users"></i> <span>OTHERS</span>
-                <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-          </span>
-            </a>
+    <li class="treeview {{ request()->is('admin/states*') ? 'active' : '' }} {{ request()->is('admin/citys*') ? 'active' : '' }}">
+        <a href="#"><i class="fa fa-users"></i> <span>OTHERS</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+            </span>
+        </a>
+
+        @if( checkrights('PSV', auth()->user()->permissions) )
             <ul class="treeview-menu">
                 <li class="{{ request()->is('admin/states') ? 'active' : '' }}">
                     <a href="{{ route('admin.states.index') }}"> <i class="fa fa-map-signs"></i> List States</a>
                 </li>
 
                 <li class="{{ request()->is('admin/citys') ? 'active' : '' }}">
-                    <a href="{{ route('admin.citys.index') }}"> <i class="fa fa-map-signs"></i> List Citys</a>
+                    <a href="{{ route('admin.citys.index') }}"> <i class="fa fa-map"></i> List Citys</a>
                 </li>
 
-{{--                @if( checkrights('PRV', auth()->user()->permissions) )--}}
-{{--                    <li class="{{ request()->is('admin/roles') ? 'active' : '' }}"><a href="{{ route('admin.roles.index') }}">List Roles</a></li>--}}
-{{--            @endif--}}
-            {{--            <div class="container">--}}
-            {{--                <!----> <button type="button" class="btn btn-default btn-sm">Cadastrar Monitorias</button>--}}
-            {{--            </div>--}}
-            <!--Teste modal-->
+{{--                <div class="container">--}}
+{{--                    <!----> <button type="button" class="btn btn-default btn-sm">Cadastrar Monitorias</button>--}}
+{{--                </div>--}}
+                <!--Teste modal-->
             </ul>
-        </li>
-    @endif
+        @endif
+    </li>
+
 
   @if( checkrights('PRRV', auth()->user()->permissions) )
       <li class="treeview {{ request()->is('admin/records*') ? 'active' : '' }}">
