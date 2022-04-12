@@ -1,0 +1,12 @@
+id
+title
+url
+category_id
+state_is
+city_id
+price
+description
+email
+name
+phone
+promocion_id

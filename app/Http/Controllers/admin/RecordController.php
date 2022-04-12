@@ -12,8 +12,9 @@ class RecordController extends Controller
 {
     public function index()
     {
-        if (!in_array('PRRV', explode(".", auth()->user()->permissions)))
-            return redirect()->route('admin')->with('flasherror', 'Permissions denied to perform this operation, contact the administrator.');
+        permitUser('PRRV', auth()->user()->permissions );
+//        if (!in_array('PRRV', explode(".", auth()->user()->permissions)))
+//            return redirect()->route('admin')->with('flasherror', 'Permissions denied to perform this operation, contact the administrator.');
 
         $records = Record::all();
         return view('admin.records.index', compact('records'));

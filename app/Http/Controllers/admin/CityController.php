@@ -13,8 +13,10 @@ class CityController extends Controller
 {
     public function index()
     {
-        if ( !in_array('PSV', explode(".", auth()->user()->permissions)) )
-            return redirect()->route('admin')->with('flasherror', 'Permissions denied to perform this operation, contact the administrator.');
+        permitUser('PSV', auth()->user()->permissions );
+
+//        if ( !in_array('PSV', explode(".", auth()->user()->permissions)) )
+//            return redirect()->route('admin')->with('flasherror', 'Permissions denied to perform this operation, contact the administrator.');
 
         $citys = Citys::latest()->get();
         return view('admin.citys.index', compact('citys'));
@@ -34,8 +36,10 @@ class CityController extends Controller
 
     public function edit(Citys $city)
     {
-        if ( !in_array('PSE', explode(".", auth()->user()->permissions)) )
-            return redirect()->route('admin')->with('flasherror', 'Permissions denied to perform this operation, contact the administrator.');
+
+        permitUser('PSE', auth()->user()->permissions );
+//        if ( !in_array('PSE', explode(".", auth()->user()->permissions)) )
+//            return redirect()->route('admin')->with('flasherror', 'Permissions denied to perform this operation, contact the administrator.');
 
         $states = States::all();
         return view('admin.citys.edit', compact('city', 'states'));

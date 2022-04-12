@@ -7,14 +7,16 @@ use Illuminate\Support\Facades\Route;
     Route::get('/', 'AdminController@index')->name('admin');
     //USER
     Route::resource('users', 'UsersController', ['as' => 'admin']);
-    //states
+    //POSTS
+    Route::resource('posts', 'PostsController', ['as' => 'admin']);
+    Route::delete('photos/{photo}', 'PhotosController@destroy')->name('admin.photos.destroy');
+    Route::post('posts/{post}/photos', 'PhotosController@store')->name('admin.posts.photos.store');
+    //STATES
     Route::resource('states', 'StatesController', ['as' => 'admin']);
-    //city
+    //CITYS
     Route::resource('citys', 'CityController', ['as' => 'admin']);
     //ROLE
     Route::resource('roles', 'RolesController', ['as' => 'admin']);
-
-
 
     //movimientos
     Route::get('records-users', 'RecordController@index')->name('admin.records');

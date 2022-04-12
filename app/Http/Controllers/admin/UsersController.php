@@ -23,8 +23,9 @@ class UsersController extends Controller
      */
     public function index()
     {
-        if ( !in_array('PUV', explode(".", auth()->user()->permissions)) )
-            return redirect()->route('admin')->with('flasherror', 'Permissions denied to perform this operation, contact the administrator.');
+        permitUser('PUV', auth()->user()->permissions );
+//        if ( !in_array('PUV', explode(".", auth()->user()->permissions)) )
+//            return redirect()->route('admin')->with('flasherror', 'Permissions denied to perform this operation, contact the administrator.');
 
         //return back()->with('flasherror', 'Permissions denied.');
         $users = User::all();
@@ -38,8 +39,9 @@ class UsersController extends Controller
      */
     public function create()
     {
-        if ( !in_array('PUE', explode(".", auth()->user()->permissions)) )
-            return redirect()->route('admin')->with('flasherror', 'Permissions denied to perform this operation, contact the administrator.');
+        permitUser('PUE', auth()->user()->permissions );
+//        if ( !in_array('PUE', explode(".", auth()->user()->permissions)) )
+//            return redirect()->route('admin')->with('flasherror', 'Permissions denied to perform this operation, contact the administrator.');
 
         $roles = Role::all();
         return view('admin.users.create', compact('roles'));
@@ -73,9 +75,9 @@ class UsersController extends Controller
      */
     public function show(User $user)
     {
-        //$foto = $user->photos;
-        if ( !in_array('PUV', explode(".", auth()->user()->permissions)) )
-            return redirect()->route('admin')->with('flasherror', 'Permissions denied to perform this operation, contact the administrator.');
+        permitUser('PUV', auth()->user()->permissions );
+//        if ( !in_array('PUV', explode(".", auth()->user()->permissions)) )
+//            return redirect()->route('admin')->with('flasherror', 'Permissions denied to perform this operation, contact the administrator.');
 
         return view('admin.users.show', compact('user'));
     }
@@ -88,9 +90,9 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
-        //return auth()->user()->permissions;
-        if ( !in_array('PUE', explode(".", auth()->user()->permissions)) )
-            return redirect()->route('admin')->with('flasherror', 'Permissions denied to perform this operation, contact the administrator.');
+        permitUser('PUE', auth()->user()->permissions );
+//        if ( !in_array('PUE', explode(".", auth()->user()->permissions)) )
+//            return redirect()->route('admin')->with('flasherror', 'Permissions denied to perform this operation, contact the administrator.');
 
         $roles = Role::all();
         return view('admin.users.edit', compact('user', 'roles'));

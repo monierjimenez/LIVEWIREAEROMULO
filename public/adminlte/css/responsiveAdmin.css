@@ -1,0 +1,73 @@
+/* =====================================
+Template Name: Eshop
+Author Name: Naimur Rahman
+Author URI: http://www.wpthemesgrid.com/
+Description: Eshop - eCommerce HTML5 Template.
+Version:1.0
+========================================*/
+/* Tablet Screen */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .table-responsive7 {
+        min-height: .01%;
+        overflow-x: auto;
+    }
+}
+
+/* Mobile Screen */
+@media only screen and (max-width: 767px) {
+    .table-responsive7 {
+        min-height: .01%;
+        overflow-x: auto;
+    }
+}
+
+@media only screen and (max-width: 570px) {
+    .table-responsive7 {
+        min-height: .01%;
+        overflow-x: auto;
+    }
+}
+
+/* Mobile Screen */
+@media only screen and (max-width: 450px) {
+    .table-responsive7 {
+        min-height: .01%;
+        overflow-x: auto;
+    }
+}
+
+@media only screen and (max-width: 411px) {
+    .table-responsive7 {
+        min-height: .01%;
+        overflow-x: auto;
+    }
+}
+
+@media only screen and (max-width: 375px) {
+    .table-responsive7 {
+        min-height: .01%;
+        overflow-x: auto;
+    }
+}
+
+@media only screen and (max-width: 360px) {
+    .table-responsive7 {
+        min-height: .01%;
+        overflow-x: auto;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .table-responsive7 {
+        min-height: .01%;
+        overflow-x: auto;
+    }
+}
+
+/* Mobile Screen */
+@media only screen and (max-width: 290px) {
+    .table-responsive7 {
+        min-height: .01%;
+        overflow-x: auto;
+    }
+}

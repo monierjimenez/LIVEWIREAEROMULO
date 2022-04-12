@@ -57,10 +57,15 @@ function checkrightscant($allpermissions) {
        foreach ($role as $rol){
            return $rol->name;
        }
-       //return $role;
     }
 
-
+    function permitUser($permit, $permitUser)
+     {
+         if ( !in_array($permit , explode(".", $permitUser)) )
+             return redirect()->route('admin')->with('flasherror', 'Permissions denied to perform this operation, contact the administrator.');
+         else
+             return true;
+     }
 
 
 

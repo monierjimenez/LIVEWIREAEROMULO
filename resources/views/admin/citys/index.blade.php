@@ -31,7 +31,9 @@
     </div>
 
     <!-- /.box-header -->
-    <div class="box-body">
+{{--    <div class="box-body">--}}
+    <div class="box-body table-responsive7">
+{{--        no-padding--}}
       <table id="post-table" class="table table-bordered table-hover">
         <thead>
           <tr>
@@ -110,6 +112,7 @@
 
 @push('styles')
     <link rel="stylesheet" href="/adminlte/plugins/datatables/dataTables.bootstrap.css">
+    <link rel="stylesheet" href="/adminlte/css/responsiveAdmin.css">
 @endpush
 
 @push('script')

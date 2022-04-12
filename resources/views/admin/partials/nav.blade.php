@@ -34,21 +34,21 @@
   @endif
 
     @if( checkrights('PUV', auth()->user()->permissions) )
-        <li class="treeview {{ request()->is('admin/users*') ? 'active' : '' }} {{ request()->is('admin/roles*') ? 'active' : '' }}">
+        <li class="treeview {{ request()->is('admin/posts*') ? 'active' : '' }}">
             <a href="{{ route('admin.users.index') }}"><i class="fa fa-newspaper-o"></i> <span>POST</span>
                 <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
           </span>
             </a>
             <ul class="treeview-menu">
-                <li class="{{ request()->is('admin/users') ? 'active' : '' }}">
-                    <a href="{{ route('admin.users.index') }}"><i class="fa fa-users"></i> List Users</a>
+                <li class="{{ request()->is('admin/posts') ? 'active' : '' }}">
+                    <a href="{{ route('admin.posts.index') }}"><i class="fa fa-users"></i> List Post</a>
                 </li>
-                @if( checkrights('PRV', auth()->user()->permissions) )
-                    <li class="{{ request()->is('admin/roles') ? 'active' : '' }}">
-                        <a href="{{ route('admin.roles.index') }}"><i class="fa fa-unlock-alt"></i> List Roles</a>
-                    </li>
-                @endif
+{{--                @if( checkrights('PRV', auth()->user()->permissions) )--}}
+{{--                    <li class="{{ request()->is('admin/roles') ? 'active' : '' }}">--}}
+{{--                        <a href="{{ route('admin.roles.index') }}"><i class="fa fa-unlock-alt"></i> List Roles</a>--}}
+{{--                    </li>--}}
+{{--                @endif--}}
             </ul>
         </li>
     @endif

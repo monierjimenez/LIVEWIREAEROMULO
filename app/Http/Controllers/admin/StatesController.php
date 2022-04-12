@@ -12,8 +12,9 @@ class StatesController extends Controller
 {
     public function index()
     {
-        if ( !in_array('PSV', explode(".", auth()->user()->permissions)) )
-            return redirect()->route('admin')->with('flasherror', 'Permissions denied to perform this operation, contact the administrator.');
+        permitUser('PSV', auth()->user()->permissions );
+//        if ( !in_array('PSV', explode(".", auth()->user()->permissions)) )
+//            return redirect()->route('admin')->with('flasherror', 'Permissions denied to perform this operation, contact the administrator.');
 
         $states = States::latest()->get();
         return view('admin.states.index', compact('states'));
@@ -33,8 +34,9 @@ class StatesController extends Controller
 
     public function edit(States $state)
     {
-        if ( !in_array('PSE', explode(".", auth()->user()->permissions)) )
-            return redirect()->route('admin')->with('flasherror', 'Permissions denied to perform this operation, contact the administrator.');
+        permitUser('PSE', auth()->user()->permissions );
+//        if ( !in_array('PSE', explode(".", auth()->user()->permissions)) )
+//            return redirect()->route('admin')->with('flasherror', 'Permissions denied to perform this operation, contact the administrator.');
 
         return view('admin.states.edit', compact('state'));
     }

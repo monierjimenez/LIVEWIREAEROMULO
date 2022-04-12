@@ -22,8 +22,9 @@ class RolesController extends Controller
 
     public function create()
     {
-        if ( !in_array('PRE', explode(".", auth()->user()->permissions)) )
-            return redirect()->route('admin')->with('flasherror', 'Permissions denied to perform this operation, contact the administrator.');
+        permitUser('PRE', auth()->user()->permissions );
+//        if ( !in_array('PRE', explode(".", auth()->user()->permissions)) )
+//            return redirect()->route('admin')->with('flasherror', 'Permissions denied to perform this operation, contact the administrator.');
         return view('admin.roles.create');
     }
 
@@ -40,16 +41,18 @@ class RolesController extends Controller
 
     public function show(Role $role)
     {
-        if ( !in_array('PRV', explode(".", auth()->user()->permissions)) )
-            return redirect()->route('admin')->with('flasherror', 'Permissions denied to perform this operation, contact the administrator.');
+        permitUser('PRV', auth()->user()->permissions );
+//        if ( !in_array('PRV', explode(".", auth()->user()->permissions)) )
+//            return redirect()->route('admin')->with('flasherror', 'Permissions denied to perform this operation, contact the administrator.');
 
         return view('admin.roles.show', compact('role'));
     }
 
     public function edit(Role $role)
     {
-        if ( !in_array('PRE', explode(".", auth()->user()->permissions)) )
-            return redirect()->route('admin')->with('flasherror', 'Permissions denied to perform this operation, contact the administrator.');
+        permitUser('PRE', auth()->user()->permissions );
+//        if ( !in_array('PRE', explode(".", auth()->user()->permissions)) )
+//            return redirect()->route('admin')->with('flasherror', 'Permissions denied to perform this operation, contact the administrator.');
 
         return view('admin.roles.edit', compact('role'));
     }
